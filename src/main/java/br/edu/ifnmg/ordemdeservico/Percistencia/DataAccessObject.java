@@ -14,6 +14,7 @@ import javax.persistence.Persistence;
 /**
  *
  * @author renato
+ * @param <T>
  */
 public abstract class  DataAccessObject<T> implements Repositorio<T> {
     
