@@ -7,16 +7,24 @@ package br.edu.ifnmg.ordemdeservico.LogicaAplicacao;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author renato
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.INTEGER, name = "tipo")
 public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,11 +40,27 @@ public class Pessoa implements Serializable {
     
     @Column(length=250)
     private String telefone;
+    
+    @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false)
+    private Documento DocumentoIdentificacao;
+    
+    @Enumerated(EnumType.ORDINAL)
+    private PessoaTipo tipo;
 
     public Pessoa() {
         this.nome = "";
         this.email = "";
         this.telefone = "";
+        this.DocumentoIdentificacao = Documento.cpf;
+    }
+
+    public Documento getDocumentoIdentificacao() {
+        return DocumentoIdentificacao;
+    }
+
+    public void setDocumentoIdentificacao(Documento DocumentoIdentificacao) {
+        this.DocumentoIdentificacao = DocumentoIdentificacao;
     }
     
 

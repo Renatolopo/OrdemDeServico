@@ -1,8 +1,11 @@
+br/edu/ifnmg/ordemdeservico/LogicaAplicacao/Administrador.class
 br/edu/ifnmg/ordemdeservico/Percistencia/PessoaDAO.class
+br/edu/ifnmg/ordemdeservico/LogicaAplicacao/PessoaTipo.class
 br/edu/ifnmg/ordemdeservico/Apresentacao/Main.class
 br/edu/ifnmg/ordemdeservico/LogicaAplicacao/Pessoa_.class
 br/edu/ifnmg/ordemdeservico/Percistencia/DataAccessObject.class
 br/edu/ifnmg/ordemdeservico/LogicaAplicacao/PessoaRepositorio.class
+br/edu/ifnmg/ordemdeservico/LogicaAplicacao/Administrador_.class
 br/edu/ifnmg/ordemdeservico/LogicaAplicacao/Repositorio.class
-.netbeans_automatic_build
+br/edu/ifnmg/ordemdeservico/LogicaAplicacao/Documento.class
 br/edu/ifnmg/ordemdeservico/LogicaAplicacao/Pessoa.class
