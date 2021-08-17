@@ -18,7 +18,7 @@ import javax.persistence.Persistence;
  */
 public abstract class  DataAccessObject<T> implements Repositorio<T> {
     
-    private EntityManager manager;  
+    protected EntityManager manager;  
     private Class type;
     
     public DataAccessObject(Class type){
@@ -48,12 +48,30 @@ public abstract class  DataAccessObject<T> implements Repositorio<T> {
 
     @Override
     public boolean Apagar(T obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityTransaction transacao = this.manager.getTransaction();
+        try{
+            transacao.begin();
+            
+            this.manager.remove(obj);
+            
+            transacao.commit();
+            
+            return true;
+        }catch(Exception ex){
+            transacao.rollback();
+            
+            return false;
+        }
     }
 
     @Override
     public T Abrir(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            T obj = (T)this.manager.find(this.type, id);
+            return obj;
+        }catch(Exception ex){
+            return null;
+        }
     }
     
     public abstract List<T> Buscar(T obj);

@@ -46,6 +46,7 @@ public class Pessoa implements Serializable {
     private Documento DocumentoIdentificacao;
     
     @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false)
     private PessoaTipo tipo;
 
     public Pessoa() {
@@ -53,7 +54,17 @@ public class Pessoa implements Serializable {
         this.email = "";
         this.telefone = "";
         this.DocumentoIdentificacao = Documento.cpf;
+        this.tipo = PessoaTipo.Cliente;
     }
+
+    public Pessoa(String nome, String email, String telefone, Documento DocumentoIdentificacao, PessoaTipo tipo) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.DocumentoIdentificacao = DocumentoIdentificacao;
+        this.tipo = tipo;
+    }
+
 
     public Documento getDocumentoIdentificacao() {
         return DocumentoIdentificacao;
@@ -87,6 +98,14 @@ public class Pessoa implements Serializable {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    public PessoaTipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(PessoaTipo tipo) {
+        this.tipo = tipo;
+    }
     
 
     public Long getId() {
@@ -119,7 +138,7 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.ordemdeservico.Pessoa[ id=" + id + " ]";
+        return getNome();
     }
     
 }

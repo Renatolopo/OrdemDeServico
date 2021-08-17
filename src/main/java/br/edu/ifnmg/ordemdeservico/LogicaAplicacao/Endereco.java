@@ -22,6 +22,32 @@ public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private String rua;
+    private String bairro;
+    private String numero;
+    private String cidade;
+    private String complemento;
+
+    public Endereco() {
+        this.id = 0L;
+        this.rua = "";
+        this.bairro = "";
+        this.numero = "";
+        this.cidade = "";
+        this.complemento = "";
+    }
+
+    public Endereco(Long id, String rua, String bairro, String numero, String cidade, String complemento) {
+        this.id = id;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.complemento = complemento;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -38,6 +64,47 @@ public class Endereco implements Serializable {
         return hash;
     }
 
+    public String getRua() {
+        return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+    
+
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -53,7 +120,7 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Endereco[ id=" + id + " ]";
+        return rua;
     }
     
 }

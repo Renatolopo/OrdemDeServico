@@ -16,12 +16,36 @@ import javax.persistence.Id;
  * @author renato
  */
 @Entity
-public class Cliente implements Serializable {
+public class Cliente extends Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private Endereco endereco;
+
+    public Cliente() {
+        this.id = 0L;
+        this.endereco = new Endereco();
+    }
+
+    public Cliente(Long id) {
+        this.id = id;
+    }
+
+    public Cliente(String nome, String email, String telefone, Documento DocumentoIdentificacao, PessoaTipo tipo) {
+        super(nome, email, telefone, DocumentoIdentificacao, tipo);
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+    
 
     public Long getId() {
         return id;

@@ -35,6 +35,19 @@ public class Administrador extends Pessoa implements Serializable {
         this.senha = "";
     }
 
+    public Administrador(String usuario, String senha) {
+        this.usuario = usuario;
+        this.senha = senha;
+    }
+
+    public Administrador(String usuario, String senha, String nome, String email, String telefone, Documento DocumentoIdentificacao, PessoaTipo tipo) {
+        super(nome, email, telefone, DocumentoIdentificacao, tipo);
+        this.usuario = usuario;
+        this.senha = senha;
+    }
+    
+    
+
     public String getUsuario() {
         return usuario;
     }

@@ -4,12 +4,15 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Pessoa</class>
     <class>br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Administrador</class>
+    <class>br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Servico</class>
+    <class>br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Item</class>
+    <class>br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServico</class>
+    <class>br.edu.ifnmg.ordemdeservico.Percistencia.AdministradorDAO</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/OrdemDeServico?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="renato20"/>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>

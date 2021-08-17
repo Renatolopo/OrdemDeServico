@@ -10,5 +10,9 @@ package br.edu.ifnmg.ordemdeservico.LogicaAplicacao;
  * @author renato
  */
 public enum FormaDePagamento {
+    dinheiro,
+    cartaoCredito,
+    cartaoDebito,
+    boletoBancario
     
 }

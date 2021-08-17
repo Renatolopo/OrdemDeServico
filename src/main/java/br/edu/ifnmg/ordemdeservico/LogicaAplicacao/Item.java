@@ -6,6 +6,7 @@
 package br.edu.ifnmg.ordemdeservico.LogicaAplicacao;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,22 @@ public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private String nome;
+    private String modelo;
+    private String marca;
+    private BigDecimal custo;
+
+    public Item() {
+        this.id= 0L;
+        this.nome = "";
+        this.modelo = "";
+        this.marca = "";
+        this.custo = new BigDecimal("0.00");
+        
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -30,6 +47,39 @@ public class Item implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public BigDecimal getCusto() {
+        return custo;
+    }
+
+    public void setCusto(BigDecimal custo) {
+        this.custo = custo;
+    }
+    
 
     @Override
     public int hashCode() {
