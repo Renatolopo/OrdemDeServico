@@ -61,7 +61,7 @@ public class Login2 extends javax.swing.JFrame {
         txtSenha.setBackground(new java.awt.Color(245, 246, 247));
         txtSenha.setForeground(new java.awt.Color(51, 51, 51));
 
-        btnLogin.setBackground(new java.awt.Color(0, 255, 102));
+        btnLogin.setBackground(new java.awt.Color(117, 168, 255));
         btnLogin.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(51, 51, 51));
         btnLogin.setText("Login");
@@ -71,12 +71,12 @@ public class Login2 extends javax.swing.JFrame {
             }
         });
 
-        btnCadastrar.setBackground(new java.awt.Color(0, 255, 102));
+        btnCadastrar.setBackground(new java.awt.Color(117, 168, 255));
         btnCadastrar.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         btnCadastrar.setForeground(new java.awt.Color(51, 51, 51));
         btnCadastrar.setText("Cadastrar");
 
-        btnSair.setBackground(new java.awt.Color(0, 255, 102));
+        btnSair.setBackground(new java.awt.Color(117, 168, 255));
         btnSair.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         btnSair.setForeground(new java.awt.Color(51, 51, 51));
         btnSair.setText("Sair");
@@ -137,7 +137,7 @@ public class Login2 extends javax.swing.JFrame {
                 .addContainerGap(137, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(0, 255, 102));
+        jPanel5.setBackground(new java.awt.Color(117, 168, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-computador-100.png"))); // NOI18N
 
