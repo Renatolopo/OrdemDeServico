@@ -10,5 +10,5 @@ package br.edu.ifnmg.ordemdeservico.LogicaAplicacao;
  * @author renato
  */
 public interface AdministradorRepositorio extends Repositorio<Administrador>{
-    
+    public boolean autenticar(String login, String senha);
 }

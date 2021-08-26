@@ -6,10 +6,11 @@
 package br.edu.ifnmg.ordemdeservico.Apresentacao;
 
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Administrador;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.AdministradorRepositorio;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Documento;
-import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Pessoa;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.PessoaRepositorio;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.PessoaTipo;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.RepositorioFactory;
 import br.edu.ifnmg.ordemdeservico.Percistencia.PessoaDAO;
 
 /**
@@ -24,13 +25,13 @@ public class Main {
     }
     
     public static void main(String[] args){
-        criaBase();
         
-        PessoaRepositorio repo_p = new PessoaDAO();
+        AdministradorRepositorio repo = RepositorioFactory.getAdministradorRepositorio();
         
-        for(Pessoa p : repo_p.Buscar(null)){
-            System.out.println(p.getNome());
-        }
+        Administrador adm = repo.Abrir(1001L);
+        
+        System.out.println(adm.getUsuario());
+      
     }
     
 }

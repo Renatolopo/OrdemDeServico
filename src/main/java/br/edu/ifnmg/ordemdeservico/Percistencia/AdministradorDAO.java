@@ -9,6 +9,7 @@ import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Administrador;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.AdministradorRepositorio;
 import java.util.Hashtable;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -47,6 +48,17 @@ public class AdministradorDAO extends DataAccessObject<Administrador> implements
             query.setParameter(chave, parametros.get(chave));
         }
         return query.getResultList();
+    }
+    
+    public boolean autenticar(String login, String senha){
+        Query sql = this.manager.createQuery("select o from Administrador o where o.usuario = :login and o.senha = :senha");
+        sql.setParameter("login", login);
+        sql.setParameter("senha", senha);
+        
+        System.out.println(sql);
+        if(sql.getResultList().size() > 0)
+            return true;
+        return false;
     }
     
     
