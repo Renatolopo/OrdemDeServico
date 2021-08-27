@@ -28,9 +28,12 @@ public class Main {
         
         AdministradorRepositorio repo = RepositorioFactory.getAdministradorRepositorio();
         
-        Administrador adm = repo.Abrir(1001L);
+        Administrador a = new Administrador();
+        a.setUsuario("Froid");
         
-        System.out.println(adm.getUsuario());
+        for(Administrador adm : repo.Buscar(a)){
+            System.out.println(adm.getUsuario());
+        }
       
     }
     

@@ -5,17 +5,29 @@
  */
 package br.edu.ifnmg.ordemdeservico.Apresentacao;
 
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+
 /**
  *
  * @author renato
  */
 public class Principal extends javax.swing.JFrame {
+    private JDesktopPane pane = null;
 
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+    }
+    
+    private void carregarForm(JInternalFrame frame){
+        pane = new JDesktopPane();
+        pane.add(frame);
+        pane.setVisible(true);
+        pane.setSize(500, 600);
+        add(pane);
     }
 
     /**
@@ -34,7 +46,8 @@ public class Principal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnGerenciarAdministradores = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de ordem de servico");
@@ -52,7 +65,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(117, 168, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/renato/Documentos/git/OrdemDeServico/src/main/java/br/edu/ifnmg/ordemdeservico/Apresentacao/img/icons8-pedir-serviço-90.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-pedir-serviço-90.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -68,7 +81,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(151, 151, 151)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
 
         jButton2.setBackground(new java.awt.Color(117, 168, 255));
@@ -91,7 +104,7 @@ public class Principal extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(117, 168, 255));
         jButton4.setForeground(new java.awt.Color(51, 51, 51));
-        jButton4.setText("Gerenciar Ítens");
+        jButton4.setText("Sair");
         jButton4.setToolTipText("");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,12 +112,22 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(117, 168, 255));
-        jButton5.setForeground(new java.awt.Color(51, 51, 51));
-        jButton5.setText("Gerenciar Administradores");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnGerenciarAdministradores.setBackground(new java.awt.Color(117, 168, 255));
+        btnGerenciarAdministradores.setForeground(new java.awt.Color(51, 51, 51));
+        btnGerenciarAdministradores.setText("Gerenciar Administradores");
+        btnGerenciarAdministradores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnGerenciarAdministradoresActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(117, 168, 255));
+        jButton6.setForeground(new java.awt.Color(51, 51, 51));
+        jButton6.setText("Gerenciar Ítens");
+        jButton6.setToolTipText("");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
 
@@ -119,7 +142,8 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGerenciarAdministradores, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -136,10 +160,12 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGerenciarAdministradores, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,9 +198,17 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnGerenciarAdministradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarAdministradoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        GerenciarAdministradores tela = new GerenciarAdministradores();
+        this.add(tela);
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_btnGerenciarAdministradoresActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,11 +246,12 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGerenciarAdministradores;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

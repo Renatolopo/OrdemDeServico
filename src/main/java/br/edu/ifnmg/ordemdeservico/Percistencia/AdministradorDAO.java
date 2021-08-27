@@ -22,32 +22,43 @@ public class AdministradorDAO extends DataAccessObject<Administrador> implements
 
     @Override
     public List<Administrador> Buscar(Administrador obj) {
-        String jpql = "select a from Administrador a";
+        // consulta JPQL padrão
+        String jpql = "select o from Administrador o";
         
-        String filtros = "";
-        
+        // Dicionario de parametros
         Hashtable<String, Object> parametros = new Hashtable<>();
         
-        if(obj.getNome().length() > 0){
-            filtros += "a.nome like :nome";
-            parametros.put("nome", obj.getNome()+"%");
-        }
-        if(obj.getTipo() != null){
-            if(filtros.length() > 0)
-                filtros += " and ";
-            filtros += "a.tipo = :tipo";
-            parametros.put("tipo", obj.getTipo());
+        // Verifico quais os valores que existem no obj
+        if(obj != null){
+            if(obj.getUsuario() != null & !obj.getUsuario().isEmpty()){
+                parametros.put("usuario", obj.getUsuario());
+            }
+
+            if(obj.getNome().length() > 0){
+                parametros.put("nome", obj.getNome()+"%");
+            }
+          
         }
         
-        if(filtros.length() > 0)
-            jpql = jpql + " were " + filtros;
-        
-        var query = this.manager.createQuery(jpql);
-        
-        for(String chave : parametros.keySet()){
-            query.setParameter(chave, parametros.get(chave));
+        // crio a parte da jpql que existem no obj
+        if(!parametros.isEmpty()){
+            String filtros = "";
+            jpql += " where ";
+            for(String campo : parametros.keySet()){
+                if(!filtros.isEmpty())
+                    filtros += " and ";
+                jpql += "o." + campo + "= :" + campo;
+            }
+            jpql += filtros;
         }
-        return query.getResultList();
+        Query sql = this.manager.createQuery(jpql);
+        
+        if(!parametros.isEmpty()){
+            for(String campo : parametros.keySet()){
+                sql.setParameter(campo, parametros.get(campo));
+            }
+        }
+        return sql.getResultList();
     }
     
     public boolean autenticar(String login, String senha){

@@ -50,6 +50,7 @@ public class Pessoa implements Serializable {
     private PessoaTipo tipo;
 
     public Pessoa() {
+        this.id = 0L;
         this.nome = "";
         this.email = "";
         this.telefone = "";
@@ -58,6 +59,7 @@ public class Pessoa implements Serializable {
     }
 
     public Pessoa(String nome, String email, String telefone, Documento DocumentoIdentificacao, PessoaTipo tipo) {
+        this.id = 0L;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
