@@ -200,9 +200,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnGerenciarAdministradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarAdministradoresActionPerformed
         // TODO add your handling code here:
-        GerenciarAdministradores tela = new GerenciarAdministradores();
-        this.add(tela);
+        AdministradorGerenciar tela = new AdministradorGerenciar();
         tela.setVisible(true);
+        this.setVisible(false);
         
     }//GEN-LAST:event_btnGerenciarAdministradoresActionPerformed
 

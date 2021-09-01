@@ -41,11 +41,15 @@ public class RepositorioFactory {
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Arquivo não encontrado");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erro 2");
         } finally {
+            System.out.println("erro 3");
             try {
                 leitorArquivo.close();
+                
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }

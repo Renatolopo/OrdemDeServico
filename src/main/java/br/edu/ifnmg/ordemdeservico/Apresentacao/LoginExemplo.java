@@ -116,10 +116,9 @@ public class LoginExemplo extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente sair do Sistema?", "Confirmação", JOptionPane.YES_NO_OPTION);
-        if(resposta == JOptionPane.YES_OPTION){
-            this.setVisible(false);
-        }
+        AdministradorGerenciarJinternalFrame tela = new AdministradorGerenciarJinternalFrame();
+        this.add(tela);
+        tela.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed

@@ -7,7 +7,7 @@
     <class>br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Servico</class>
     <class>br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Item</class>
     <class>br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServico</class>
-    <class>br.edu.ifnmg.ordemdeservico.Percistencia.AdministradorDAO</class>
+    <class>br.edu.ifnmg.ordemdeservico.Persistencia.AdministradorDAO</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/OrdemDeServico?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
