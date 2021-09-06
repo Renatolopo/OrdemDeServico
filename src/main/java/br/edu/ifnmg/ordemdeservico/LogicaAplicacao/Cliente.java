@@ -6,16 +6,20 @@
 package br.edu.ifnmg.ordemdeservico.LogicaAplicacao;
 
 import java.io.Serializable;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author renato
  */
 @Entity
+@Table(name = "Cliente")
+@DiscriminatorValue(value = "1")
 public class Cliente extends Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,6 +30,7 @@ public class Cliente extends Pessoa implements Serializable {
     private Endereco endereco;
 
     public Cliente() {
+        super();
         this.id = 0L;
         this.endereco = new Endereco();
     }
@@ -34,8 +39,10 @@ public class Cliente extends Pessoa implements Serializable {
         this.id = id;
     }
 
-    public Cliente(String nome, String email, String telefone, Documento DocumentoIdentificacao, PessoaTipo tipo) {
-        super(nome, email, telefone, DocumentoIdentificacao, tipo);
+    public Cliente(String nome, String email, String telefone, Documento DocumentoIdentificacao, PessoaTipo tipo, String numDocumento) {
+        super(nome, email, telefone, DocumentoIdentificacao, tipo, numDocumento);
+        this.id = 0L;
+        this.endereco = new Endereco();
     }
 
     public Endereco getEndereco() {
@@ -77,7 +84,7 @@ public class Cliente extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Cliente[ id=" + id + " ]";
+        return this.getNome();
     }
     
 }

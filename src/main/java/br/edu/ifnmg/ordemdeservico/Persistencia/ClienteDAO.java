@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ClienteDAO extends DataAccessObject<Cliente> implements ClienteRepositorio {
 
-    public ClienteDAO(Class type) {
+    public ClienteDAO() {
         super(Cliente.class);
     }
 

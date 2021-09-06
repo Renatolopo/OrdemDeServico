@@ -35,8 +35,8 @@ public class PrestadorDeServico extends Pessoa implements Serializable {
     }
     
     
-    public PrestadorDeServico(String areaDeAtuacao, ArrayList<Servico> servicos, String nome, String email, String telefone, Documento DocumentoIdentificacao, PessoaTipo tipo) {
-        super(nome, email, telefone, DocumentoIdentificacao, tipo);
+    public PrestadorDeServico(String areaDeAtuacao, ArrayList<Servico> servicos, String nome, String email, String telefone, Documento DocumentoIdentificacao, PessoaTipo tipo, String numDocumento) {
+        super(nome, email, telefone, DocumentoIdentificacao, tipo, numDocumento);
         this.areaDeAtuacao = areaDeAtuacao;
         this.servicos = servicos;
     }
