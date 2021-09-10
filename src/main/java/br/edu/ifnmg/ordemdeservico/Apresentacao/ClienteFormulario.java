@@ -6,11 +6,13 @@
 package br.edu.ifnmg.ordemdeservico.Apresentacao;
 
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Cliente;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.ClienteRepositorio;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Documento;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Endereco;
-import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.PessoaRepositorio;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.EnderecoRepositorio;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.PessoaTipo;
-import br.edu.ifnmg.ordemdeservico.Persistencia.PessoaDAO;
+import br.edu.ifnmg.ordemdeservico.Persistencia.ClienteDAO;
+import br.edu.ifnmg.ordemdeservico.Persistencia.EnderecoDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +20,8 @@ import javax.swing.JOptionPane;
  * @author renato
  */
 public class ClienteFormulario extends javax.swing.JFrame {
-    PessoaRepositorio repositorio;
+    ClienteRepositorio repositorio;
+    EnderecoRepositorio repoEndereco;
     Cliente cliente;
 
     /**
@@ -27,7 +30,9 @@ public class ClienteFormulario extends javax.swing.JFrame {
     public ClienteFormulario(Cliente c) {
         this.cliente = c;
         // implementar repositorio factory aqui
-        this.repositorio = new PessoaDAO();
+        //this.repositorio = RepositorioFactory.getClienteRepositorio();
+        this.repositorio = new ClienteDAO();
+        this.repoEndereco = new EnderecoDAO();
         initComponents();
         this.setComponentes();
     }
@@ -353,6 +358,7 @@ public class ClienteFormulario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -362,7 +368,7 @@ public class ClienteFormulario extends javax.swing.JFrame {
 
             this.getComponentes();
             System.out.println(this.cliente.getNome());
-            if(repositorio.Salvar(this.cliente)){
+            if(repoEndereco.Salvar(this.cliente.getEndereco()) & repositorio.Salvar(this.cliente)){
                 JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 this.setComponentes();
             }else{
@@ -378,7 +384,7 @@ public class ClienteFormulario extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(JOptionPane.showConfirmDialog(this, "Deseja realmente remover o Cliente atual?", "Confirmação", JOptionPane.YES_NO_OPTION)
             == JOptionPane.YES_OPTION){
-            if(repositorio.Apagar(this.cliente)){
+            if(repoEndereco.Apagar(this.cliente.getEndereco()) & repositorio.Apagar(this.cliente)){
                 this.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(this, "Aconteceu um problema ao remover os dados!", "Erro!", JOptionPane.ERROR_MESSAGE);

@@ -6,7 +6,6 @@
 package br.edu.ifnmg.ordemdeservico.Apresentacao;
 
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Cliente;
-import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Cliente1;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.ClienteRepositorio;
 import br.edu.ifnmg.ordemdeservico.Persistencia.ClienteDAO;
 import java.util.List;
@@ -187,6 +186,7 @@ public class ClienteBuscar extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -242,8 +242,6 @@ public class ClienteBuscar extends javax.swing.JFrame {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
-        Principal tela = new Principal();
-        tela.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnMenuActionPerformed
 

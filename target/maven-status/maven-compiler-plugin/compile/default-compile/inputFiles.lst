@@ -26,7 +26,6 @@
 /home/renato/Documentos/git/OrdemDeServico/src/main/java/br/edu/ifnmg/ordemdeservico/LogicaAplicacao/ClienteRepositorio.java
 /home/renato/Documentos/git/OrdemDeServico/src/main/java/br/edu/ifnmg/ordemdeservico/Apresentacao/AdministradorFormulario.java
 /home/renato/Documentos/git/OrdemDeServico/src/main/java/br/edu/ifnmg/ordemdeservico/Persistencia/DataAccessObject.java
-/home/renato/Documentos/git/OrdemDeServico/src/main/java/br/edu/ifnmg/ordemdeservico/LogicaAplicacao/Cliente1.java
 /home/renato/Documentos/git/OrdemDeServico/src/main/java/br/edu/ifnmg/ordemdeservico/LogicaAplicacao/PrestadorDeServicoRepositorio.java
 /home/renato/Documentos/git/OrdemDeServico/src/main/java/br/edu/ifnmg/ordemdeservico/LogicaAplicacao/FormaDePagamento.java
 /home/renato/Documentos/git/OrdemDeServico/src/main/java/br/edu/ifnmg/ordemdeservico/Persistencia/EnderecoDAO.java
