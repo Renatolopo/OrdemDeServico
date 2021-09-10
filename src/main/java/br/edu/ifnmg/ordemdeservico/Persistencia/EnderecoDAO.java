@@ -6,6 +6,7 @@
 package br.edu.ifnmg.ordemdeservico.Persistencia;
 
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Endereco;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Endereco1;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.EnderecoRepositorio;
 import java.util.Hashtable;
 import java.util.List;

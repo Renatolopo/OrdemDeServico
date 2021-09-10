@@ -9,9 +9,11 @@ import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Administrador;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Cliente;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.ClienteRepositorio;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Documento;
-import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Pessoa;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.PessoaRepositorio;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.PessoaTipo;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.PrestadorDeServico;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.PrestadorDeServicoRepositorio;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.RepositorioFactory;
 import br.edu.ifnmg.ordemdeservico.Persistencia.ClienteDAO;
 import br.edu.ifnmg.ordemdeservico.Persistencia.PessoaDAO;
 
@@ -29,25 +31,36 @@ public class Main {
     public static void criaBaseCliente(){
         
         ClienteRepositorio repop = new ClienteDAO();
-        repop.Salvar(new Cliente("Ribamar", "vasco@", "234325", Documento.cpf, PessoaTipo.Cliente, "567534"));
-        Cliente e = new Cliente("Gabgol", "Flamengo@", "8324721312", Documento.cnpj, PessoaTipo.Cliente, "2342");
+        repop.Salvar(new Cliente("Naruto", "konoha@", "1234", Documento.cpf, PessoaTipo.Cliente, "123"));
+        Cliente e = new Cliente("Sasuke", "uchirra@", "576", Documento.cnpj, PessoaTipo.Cliente, "435");
         repop.Salvar(e);
         //System.out.println(e.getNome());
     }
     
+    public static void criaBasePrestador(){
+        PrestadorDeServicoRepositorio repo = RepositorioFactory.getPrestadorDeServicoRepositorio();
+        repo.Salvar(new PrestadorDeServico("pintor", "prestador4", "edhwuefhwye", "32422", Documento.cpf, PessoaTipo.PrestadorDeServico, "2342347"));
+    }
+    
+    
+    
+    
+    
     public static void main(String[] args){
         
-        criaBaseCliente();
+        //criaBaseCliente();
+        //criaBaseAdm();
+        //criaBasePrestador();
         
         //PessoaRepositorio repo = RepositorioFactory.getPessoaRepositorio();
+
+        PrestadorDeServicoRepositorio repo = RepositorioFactory.getPrestadorDeServicoRepositorio();
         
-//        Pessoa p1 = new Pessoa();
-//        p1.setNome("Froid");
+        PrestadorDeServico pres = new PrestadorDeServico();
+        pres.setNome("prestador5");
         
-        PessoaDAO repo  =  new PessoaDAO();
-        
-        for(Pessoa p : repo.Buscar(null)){
-            System.out.println(p.getNome());
+        for(PrestadorDeServico p : repo.Buscar(pres)){
+            System.out.println(p.getId());
             //repo.Apagar(p);
         }
       

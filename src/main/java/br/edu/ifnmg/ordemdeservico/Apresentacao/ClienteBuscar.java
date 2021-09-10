@@ -5,8 +5,8 @@
  */
 package br.edu.ifnmg.ordemdeservico.Apresentacao;
 
-import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Administrador;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Cliente;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Cliente1;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.ClienteRepositorio;
 import br.edu.ifnmg.ordemdeservico.Persistencia.ClienteDAO;
 import java.util.List;

@@ -5,6 +5,8 @@
  */
 package br.edu.ifnmg.ordemdeservico.Apresentacao;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author renato
@@ -29,11 +31,11 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         btnAdministrador = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnPrestadorDeServico = new javax.swing.JButton();
+        btnItem = new javax.swing.JButton();
+        btnCliente = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
+        btnOrdemDeServico = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -56,25 +58,40 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(117, 168, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-serviço-50.png"))); // NOI18N
-
-        jButton3.setBackground(new java.awt.Color(117, 168, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-caixa-de-ferramentas-50.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnPrestadorDeServico.setBackground(new java.awt.Color(117, 168, 255));
+        btnPrestadorDeServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-serviço-50.png"))); // NOI18N
+        btnPrestadorDeServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnPrestadorDeServicoActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(117, 168, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-empresa-cliente-50.png"))); // NOI18N
+        btnItem.setBackground(new java.awt.Color(117, 168, 255));
+        btnItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-caixa-de-ferramentas-50.png"))); // NOI18N
+        btnItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnItemActionPerformed(evt);
+            }
+        });
 
-        jButton5.setBackground(new java.awt.Color(117, 168, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-desligar-50.png"))); // NOI18N
+        btnCliente.setBackground(new java.awt.Color(117, 168, 255));
+        btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-empresa-cliente-50.png"))); // NOI18N
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
 
-        jButton6.setBackground(new java.awt.Color(117, 168, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ordem-de-compra-50.png"))); // NOI18N
+        btnSair.setBackground(new java.awt.Color(117, 168, 255));
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-desligar-50.png"))); // NOI18N
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
+        btnOrdemDeServico.setBackground(new java.awt.Color(117, 168, 255));
+        btnOrdemDeServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ordem-de-compra-50.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(117, 168, 255));
 
@@ -118,14 +135,14 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnPrestadorDeServico, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnItem, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3)
                     .addComponent(jLabel6))
                 .addGap(85, 85, 85)
@@ -133,8 +150,8 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jLabel4)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnOrdemDeServico, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -144,12 +161,12 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(322, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnPrestadorDeServico, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnOrdemDeServico, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -157,7 +174,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(btnItem, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                             .addComponent(btnAdministrador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -183,11 +200,32 @@ public class Principal extends javax.swing.JFrame {
         //this.setVisible(false);
     }//GEN-LAST:event_btnAdministradorActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnItemActionPerformed
         // TODO add your handling code here:
         ItemBuscar tela = new ItemBuscar();
         tela.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnItemActionPerformed
+
+    private void btnPrestadorDeServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrestadorDeServicoActionPerformed
+        // TODO add your handling code here:
+        PrestadorDeServicoBuscar tela = new PrestadorDeServicoBuscar();
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnPrestadorDeServicoActionPerformed
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        // TODO add your handling code here:
+        ClienteBuscar tela = new ClienteBuscar();
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnClienteActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(this, "Deseja realmente sair do Sistema", "Confirmação", JOptionPane.YES_NO_OPTION)
+            == JOptionPane.YES_OPTION){
+            System.exit(0);
+
+        }
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,11 +265,11 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdministrador;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnCliente;
+    private javax.swing.JButton btnItem;
+    private javax.swing.JButton btnOrdemDeServico;
+    private javax.swing.JButton btnPrestadorDeServico;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

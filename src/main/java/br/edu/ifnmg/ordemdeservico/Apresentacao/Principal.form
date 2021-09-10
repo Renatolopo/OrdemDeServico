@@ -35,7 +35,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnAdministrador" max="32767" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="119" max="-2" attributes="0"/>
+                      <Component id="btnPrestadorDeServico" min="-2" pref="119" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
@@ -43,8 +43,8 @@
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="jButton3" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
-                      <Component id="jButton4" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="btnItem" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="btnCliente" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -54,8 +54,8 @@
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButton5" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
-                      <Component id="jButton6" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="btnSair" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="btnOrdemDeServico" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -69,12 +69,12 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="322" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton5" alignment="1" min="-2" pref="123" max="-2" attributes="0"/>
+                  <Component id="btnSair" alignment="1" min="-2" pref="123" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton2" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
-                          <Component id="jButton4" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
-                          <Component id="jButton6" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="btnPrestadorDeServico" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="btnCliente" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="btnOrdemDeServico" alignment="3" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -84,7 +84,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton3" pref="123" max="32767" attributes="0"/>
+                          <Component id="btnItem" pref="123" max="32767" attributes="0"/>
                           <Component id="btnAdministrador" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -122,7 +122,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdministradorActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnPrestadorDeServico">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="a8" red="75" type="rgb"/>
@@ -131,8 +131,11 @@
           <Image iconType="3" name="/icons8-servi&#xe7;o-50.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrestadorDeServicoActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="btnItem">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="a8" red="75" type="rgb"/>
@@ -142,10 +145,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnItemActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="btnCliente">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="a8" red="75" type="rgb"/>
@@ -154,8 +157,11 @@
           <Image iconType="3" name="/icons8-empresa-cliente-50.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClienteActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="btnSair">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="a8" red="75" type="rgb"/>
@@ -164,8 +170,11 @@
           <Image iconType="3" name="/icons8-desligar-50.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton6">
+    <Component class="javax.swing.JButton" name="btnOrdemDeServico">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="a8" red="75" type="rgb"/>

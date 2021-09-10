@@ -22,28 +22,45 @@ public class PrestadorDeServicoDAO extends DataAccessObject<PrestadorDeServico> 
     
     @Override
     public List<PrestadorDeServico> Buscar(PrestadorDeServico obj) {
-        String jpql = "select p from PrestadorDeServico p";
-        String filtros = "";
+        String jpql = "select o from PrestadorDeServico o";
         
+        
+        // Dicionario de parametros
         Hashtable<String, Object> parametros = new Hashtable<>();
         
+        // Verifico quais os valores que existem no obj
         if(obj != null){
+            if(obj.getId() != null & obj.getId() != 0L){
+                parametros.put("id", obj.getId());
+            }
+            
             if(obj.getNome().length() > 0){
-                filtros += "p.nome like :nome";
-                parametros.put("nome", obj.getNome()+"%");
+                parametros.put("nome", obj.getNome());
             }
           
         }
         
-        if(filtros.length() > 0)
-            jpql = jpql + " where " + filtros;
-        
-        Query consulta = this.manager.createQuery(jpql);
-        
-        for(String chave : parametros.keySet()){
-            consulta.setParameter(chave, parametros.get(chave));
+        // crio a parte da jpql que existem no obj
+        if(!parametros.isEmpty()){
+            String filtros = "";
+            jpql += " where ";
+            for(String campo : parametros.keySet()){
+                if(!filtros.isEmpty())
+                    filtros += " and ";
+                jpql += "o." + campo + "= :" + campo;
+            }
+            jpql += filtros;
         }
-        return consulta.getResultList();
+        Query sql = this.manager.createQuery(jpql);
+        
+        if(!parametros.isEmpty()){
+            for(String campo : parametros.keySet()){
+                sql.setParameter(campo, parametros.get(campo));
+            }
+        }
+        return sql.getResultList();
+        
+        
     }
     
 }

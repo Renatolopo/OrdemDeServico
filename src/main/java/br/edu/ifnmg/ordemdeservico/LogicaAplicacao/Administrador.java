@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Administradores")
-@DiscriminatorValue(value = "1")
+@DiscriminatorValue(value = "0")
 public class Administrador extends Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;

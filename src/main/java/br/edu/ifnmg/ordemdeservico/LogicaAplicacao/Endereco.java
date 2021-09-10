@@ -6,7 +6,6 @@
 package br.edu.ifnmg.ordemdeservico.LogicaAplicacao;
 
 import java.io.Serializable;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +18,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Endereco")
-@DiscriminatorValue(value = "1")
 public class Endereco implements Serializable {
 
     private static final long serialVersionUID = 1L;

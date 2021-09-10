@@ -173,20 +173,6 @@ public class AdministradorFormulario extends javax.swing.JFrame {
         CaixaTipoDocumento.setBackground(new java.awt.Color(245, 246, 247));
         CaixaTipoDocumento.setForeground(new java.awt.Color(0, 0, 0));
         CaixaTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPF", "CNPJ" }));
-        CaixaTipoDocumento.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                CaixaTipoDocumentoComponentAdded(evt);
-            }
-        });
-        CaixaTipoDocumento.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                CaixaTipoDocumentoAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
 
         txtDocumentoIdentificacao.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -222,9 +208,9 @@ public class AdministradorFormulario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addComponent(btnRemover)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(btnVoltar)
                 .addGap(181, 181, 181))
         );
@@ -285,14 +271,6 @@ public class AdministradorFormulario extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void CaixaTipoDocumentoAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CaixaTipoDocumentoAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CaixaTipoDocumentoAncestorAdded
-
-    private void CaixaTipoDocumentoComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_CaixaTipoDocumentoComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CaixaTipoDocumentoComponentAdded
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:

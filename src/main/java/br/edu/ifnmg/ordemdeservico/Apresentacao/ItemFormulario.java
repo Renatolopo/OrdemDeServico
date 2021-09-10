@@ -192,10 +192,10 @@ public class ItemFormulario extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtCusto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalvar)
                     .addComponent(btnExcluir)
-                    .addComponent(btnSair))
+                    .addComponent(btnSair, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 

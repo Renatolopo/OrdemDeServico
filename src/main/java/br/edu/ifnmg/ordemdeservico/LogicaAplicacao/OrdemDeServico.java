@@ -31,7 +31,7 @@ public class OrdemDeServico implements Serializable {
     private Date data;
     private Date fimDoAtendimento;
     private BigDecimal totalDoServico;
-    private Cliente cliente;
+    private Cliente1 cliente;
     private ArrayList<Servico> servicos;
 
     public OrdemDeServico() {
@@ -41,11 +41,11 @@ public class OrdemDeServico implements Serializable {
         this.data = new Date();
         this.fimDoAtendimento = new Date();
         this.totalDoServico = new BigDecimal("0.00");
-        this.cliente = new Cliente();
+        this.cliente = new Cliente1();
         this.servicos = new ArrayList<>();
     }
 
-    public OrdemDeServico(Long id, String motivoDaChamada, FormaDePagamento formaDePagamento, Date data, Date fimDoAtendimento, BigDecimal totalDoServico, Cliente cliente, ArrayList<Servico> servicos) {
+    public OrdemDeServico(Long id, String motivoDaChamada, FormaDePagamento formaDePagamento, Date data, Date fimDoAtendimento, BigDecimal totalDoServico, Cliente1 cliente, ArrayList<Servico> servicos) {
         this.id = id;
         this.motivoDaChamada = motivoDaChamada;
         this.formaDePagamento = formaDePagamento;
@@ -106,11 +106,11 @@ public class OrdemDeServico implements Serializable {
         this.totalDoServico = totalDoServico;
     }
 
-    public Cliente getCliente() {
+    public Cliente1 getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Cliente1 cliente) {
         this.cliente = cliente;
     }
 
