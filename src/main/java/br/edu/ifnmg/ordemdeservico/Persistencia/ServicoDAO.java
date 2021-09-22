@@ -17,8 +17,8 @@ import javax.persistence.Query;
  */
 public class ServicoDAO extends DataAccessObject<Servico> implements ServicoRepositorio{
 
-    public ServicoDAO(Class type) {
-        super(type);
+    public ServicoDAO() {
+        super(Servico.class);
     }
 
     @Override

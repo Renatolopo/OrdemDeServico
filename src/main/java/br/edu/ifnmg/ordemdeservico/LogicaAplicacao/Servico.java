@@ -31,7 +31,6 @@ public class Servico implements Serializable {
     private String status;
     private String observacao;
     private PrestadorDeServico prestadorDeServico;
-    private ArrayList<OrdemDeServico> ordemDeServico;
 
     public Servico() {
         this.id = 0L;
@@ -42,7 +41,6 @@ public class Servico implements Serializable {
         this.status = "";
         this.observacao = "";
         this.prestadorDeServico = new PrestadorDeServico();
-        this.ordemDeServico = new ArrayList<>();
     }
 
     public Servico(Long id, String descricao, String diagnostico, String resolucao, ArrayList<Item> itens, String status, String observacao, PrestadorDeServico prestadorDeServico, ArrayList<OrdemDeServico> ordemDeServico) {
@@ -54,7 +52,6 @@ public class Servico implements Serializable {
         this.status = status;
         this.observacao = observacao;
         this.prestadorDeServico = prestadorDeServico;
-        this.ordemDeServico = ordemDeServico;
     }
     
     
@@ -123,14 +120,7 @@ public class Servico implements Serializable {
         this.prestadorDeServico = prestadorDeServico;
     }
 
-    public ArrayList<OrdemDeServico> getOrdemDeServico() {
-        return ordemDeServico;
-    }
 
-    public void setOrdemDeServico(ArrayList<OrdemDeServico> ordemDeServico) {
-        this.ordemDeServico = ordemDeServico;
-    }
-    
 
     @Override
     public int hashCode() {

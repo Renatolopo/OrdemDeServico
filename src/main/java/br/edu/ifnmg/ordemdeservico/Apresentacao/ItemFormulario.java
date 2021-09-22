@@ -233,7 +233,7 @@ public class ItemFormulario extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(this, "Deseja realmente Salvar os dados do Administrador?", "Confirmação", JOptionPane.YES_NO_OPTION)
+        if(JOptionPane.showConfirmDialog(this, "Deseja realmente Salvar os dados desse Item ?", "Confirmação", JOptionPane.YES_NO_OPTION)
             == JOptionPane.YES_OPTION){
 
             this.getComponentes();
