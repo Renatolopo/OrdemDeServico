@@ -92,6 +92,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnOrdemDeServico.setBackground(new java.awt.Color(117, 168, 255));
         btnOrdemDeServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ordem-de-compra-50.png"))); // NOI18N
+        btnOrdemDeServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdemDeServicoActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(117, 168, 255));
 
@@ -226,6 +231,12 @@ public class Principal extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnOrdemDeServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdemDeServicoActionPerformed
+        // TODO add your handling code here:
+        OrdemDeServicoBuscar tela = new OrdemDeServicoBuscar();
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnOrdemDeServicoActionPerformed
 
     /**
      * @param args the command line arguments

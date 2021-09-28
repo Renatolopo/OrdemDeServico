@@ -5,16 +5,30 @@
  */
 package br.edu.ifnmg.ordemdeservico.Apresentacao;
 
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServico;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServicoRepositorio;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Servico;
+import br.edu.ifnmg.ordemdeservico.Persistencia.OrdemDeServicoDAO;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author renato
  */
 public class OrdemDeServicoBuscar extends javax.swing.JFrame {
+    OrdemDeServicoRepositorio repositorio;
+    OrdemDeServico ordemDeServico;
 
     /**
      * Creates new form OrdemDeServicoBuscar
      */
     public OrdemDeServicoBuscar() {
+        // Factory aqui
+        repositorio = new OrdemDeServicoDAO();
+        ordemDeServico = new OrdemDeServico();
         initComponents();
     }
 
@@ -29,7 +43,7 @@ public class OrdemDeServicoBuscar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtNomeCliente = new javax.swing.JTextField();
+        txtMotivoDaChamada = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnAdicionar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
@@ -42,24 +56,44 @@ public class OrdemDeServicoBuscar extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(245, 246, 247));
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Nome do Cliente:");
+        jLabel1.setText("Motivo da Chamada:");
 
-        txtNomeCliente.setBackground(new java.awt.Color(255, 255, 255));
+        txtMotivoDaChamada.setBackground(new java.awt.Color(255, 255, 255));
 
         btnBuscar.setBackground(new java.awt.Color(117, 168, 255));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-pesquisar-25.png"))); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setBackground(new java.awt.Color(117, 168, 255));
         btnAdicionar.setForeground(new java.awt.Color(0, 0, 0));
         btnAdicionar.setText("Adicionar");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setBackground(new java.awt.Color(117, 168, 255));
         btnLimpar.setForeground(new java.awt.Color(0, 0, 0));
         btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         btnMenu.setBackground(new java.awt.Color(117, 168, 255));
         btnMenu.setForeground(new java.awt.Color(0, 0, 0));
         btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
         tblResultado.setBackground(new java.awt.Color(245, 246, 247));
         tblResultado.setModel(new javax.swing.table.DefaultTableModel(
@@ -85,6 +119,11 @@ public class OrdemDeServicoBuscar extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblResultado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblResultadoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblResultado);
         if (tblResultado.getColumnModel().getColumnCount() > 0) {
             tblResultado.getColumnModel().getColumn(0).setResizable(false);
@@ -98,22 +137,22 @@ public class OrdemDeServicoBuscar extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtMotivoDaChamada)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAdicionar)
+                        .addGap(80, 80, 80)
+                        .addComponent(btnLimpar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMenu))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtNomeCliente, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnAdicionar)
-                                .addGap(58, 58, 58)
-                                .addComponent(btnLimpar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnMenu)))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscar)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -124,7 +163,7 @@ public class OrdemDeServicoBuscar extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtMotivoDaChamada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -148,7 +187,68 @@ public class OrdemDeServicoBuscar extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        ordemDeServico.setMotivoDaChamada(txtMotivoDaChamada.getText());
+        List<OrdemDeServico> resultado = repositorio.Buscar(ordemDeServico);
+        
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id");
+        modelo.addColumn("Cliente");
+        modelo.addColumn("Motivo da chamada");
+        
+        for(OrdemDeServico o : resultado){
+            Vector linha = new Vector();
+            linha.add(o.getId());
+            linha.add(o.getCliente().getNome());
+            linha.add(o.getMotivoDaChamada());
+            
+            modelo.addRow(linha);
+            
+        }
+        
+        tblResultado.setModel(modelo);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(this, "Deseja realmente limpar a busca?", "Confirmação", JOptionPane.YES_NO_OPTION) 
+                == JOptionPane.YES_OPTION){
+            txtMotivoDaChamada.setText("");
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Id");
+            modelo.addColumn("Cliente");    
+            modelo.addColumn("Motivo da chamada");;
+            tblResultado.setModel(modelo);
+        }
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        // TODO add your handling code here:
+        OrdemDeServicoFormulario tela = new OrdemDeServicoFormulario(new OrdemDeServico());
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void tblResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResultadoMouseClicked
+        // TODO add your handling code here:
+        int linha = tblResultado.getSelectedRow();
+        Long id = Long.parseLong(tblResultado.getValueAt(linha, 0).toString());
+        
+        OrdemDeServico o  = repositorio.Abrir(id);
+        
+        OrdemDeServicoFormulario tela = new OrdemDeServicoFormulario(o);
+        tela.setVisible(true);
+    }//GEN-LAST:event_tblResultadoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -194,6 +294,6 @@ public class OrdemDeServicoBuscar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblResultado;
-    private javax.swing.JTextField txtNomeCliente;
+    private javax.swing.JTextField txtMotivoDaChamada;
     // End of variables declaration//GEN-END:variables
 }

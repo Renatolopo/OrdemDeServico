@@ -67,7 +67,7 @@ public class ServicoFormulario extends javax.swing.JFrame {
         this.txtResolucao.setText(this.servico.getResolucao());
         this.cbStatus.setSelectedItem(getIndexDoStatus(this.servico.getStatus()));
         this.txtObservacao.setText(this.servico.getObservacao());
-        this.lblPrestadorDeServico.setText(this.servico.getPrestadorDeServico().getNome());
+        this.txtPrestadorDeServico.setText(this.servico.getPrestadorDeServico().getNome());
         
         // lista de itens
         DefaultTableModel modelo = new DefaultTableModel();
@@ -125,7 +125,7 @@ public class ServicoFormulario extends javax.swing.JFrame {
     
     public void setPrestador(PrestadorDeServico p){     
         this.prestadorDeServico = p;
-        this.lblPrestadorDeServico.setText(this.prestadorDeServico.getNome());
+        this.txtPrestadorDeServico.setText(this.prestadorDeServico.getNome());
         
     }
     
@@ -165,10 +165,9 @@ public class ServicoFormulario extends javax.swing.JFrame {
         tblItens = new javax.swing.JTable();
         btnAddItem = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        lblPrestadorDeServico = new javax.swing.JLabel();
         btnAddPrestador = new javax.swing.JButton();
+        txtPrestadorDeServico = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -266,14 +265,6 @@ public class ServicoFormulario extends javax.swing.JFrame {
             }
         });
 
-        btnExcluir.setBackground(new java.awt.Color(117, 168, 255));
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-excluir-30.png"))); // NOI18N
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-
         btnSair.setBackground(new java.awt.Color(117, 168, 255));
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-sair-30.png"))); // NOI18N
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -281,9 +272,6 @@ public class ServicoFormulario extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
-
-        lblPrestadorDeServico.setForeground(new java.awt.Color(0, 0, 0));
-        lblPrestadorDeServico.setText("--");
 
         btnAddPrestador.setBackground(new java.awt.Color(117, 168, 255));
         btnAddPrestador.setForeground(new java.awt.Color(0, 0, 0));
@@ -293,6 +281,9 @@ public class ServicoFormulario extends javax.swing.JFrame {
                 btnAddPrestadorActionPerformed(evt);
             }
         });
+
+        txtPrestadorDeServico.setEditable(false);
+        txtPrestadorDeServico.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -318,49 +309,52 @@ public class ServicoFormulario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAddItem, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblPrestadorDeServico, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addGap(42, 42, 42)
-                            .addComponent(btnAddPrestador))
-                        .addComponent(jLabel9))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addGap(42, 42, 42))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtPrestadorDeServico, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnAddPrestador)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar)
-                .addGap(40, 40, 40)
-                .addComponent(btnExcluir)
-                .addGap(40, 40, 40)
+                .addGap(56, 56, 56)
                 .addComponent(btnSair)
-                .addGap(276, 276, 276))
+                .addGap(327, 327, 327))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblId))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(btnAddPrestador))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrestadorDeServico))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(lblId))
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPrestadorDeServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAddPrestador))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
                             .addComponent(btnAddItem))
@@ -379,10 +373,9 @@ public class ServicoFormulario extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(txtObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
-                    .addComponent(btnExcluir)
                     .addComponent(btnSair))
                 .addGap(50, 50, 50))
         );
@@ -412,20 +405,6 @@ public class ServicoFormulario extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
-
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
-        this.getComponentesRemover();
-        if(JOptionPane.showConfirmDialog(this, "Deseja realmente remover o Administrador atual?", "Confirmação", JOptionPane.YES_NO_OPTION)
-            == JOptionPane.YES_OPTION){
-            if(repositorio.Apagar(this.servico)){
-                this.setVisible(false);
-            }else{
-                JOptionPane.showMessageDialog(this, "Aconteceu um problema ao remover os dados!", "Erro!", JOptionPane.ERROR_MESSAGE);
-            }
-
-        }
-    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
@@ -502,7 +481,6 @@ public class ServicoFormulario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnAddPrestador;
-    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cbStatus;
@@ -519,11 +497,11 @@ public class ServicoFormulario extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblId;
-    private javax.swing.JLabel lblPrestadorDeServico;
     private javax.swing.JTable tblItens;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtDiagnostico;
     private javax.swing.JTextField txtObservacao;
+    private javax.swing.JTextField txtPrestadorDeServico;
     private javax.swing.JTextField txtResolucao;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,7 +7,24 @@ package br.edu.ifnmg.ordemdeservico.Apresentacao;
 
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Cliente;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.ClienteRepositorio;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.FormaDePagamento;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Item;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServico;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServicoRepositorio;
+import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Servico;
 import br.edu.ifnmg.ordemdeservico.Persistencia.ClienteDAO;
+import br.edu.ifnmg.ordemdeservico.Persistencia.OrdemDeServicoDAO;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -16,14 +33,87 @@ import br.edu.ifnmg.ordemdeservico.Persistencia.ClienteDAO;
  */
 public class OrdemDeServicoFormulario extends javax.swing.JFrame {
     ClienteRepositorio clienteRepo;
+    Cliente cliente;
+    ArrayList<Servico> servicos;
+    OrdemDeServicoRepositorio repositorio;
+    OrdemDeServico ordemDeServico;
 
     /**
      * Creates new form OrdemDeServicoFormulario
      */
-    public OrdemDeServicoFormulario() {
-        clienteRepo = new ClienteDAO();
+    public OrdemDeServicoFormulario(OrdemDeServico o) {
+        this.clienteRepo = new ClienteDAO();
+        this.ordemDeServico = o;
+        this.repositorio = new OrdemDeServicoDAO();
+        this.servicos = new ArrayList<>();
         initComponents();
-        preecherComboCliente();
+        
+        this.setComponentes();
+    }
+    
+    private void setComponentes(){
+        this.lblId.setText(this.ordemDeServico.getId().toString());
+        this.txtCliente.setText(this.ordemDeServico.getCliente().getNome());
+        this.txtMotivoDaChamada.setText(this.ordemDeServico.getMotivoDaChamada());
+        this.txtDataInicio.setText(this.ordemDeServico.getData().toString());
+        this.txtFimDoAtendimento.setText(this.ordemDeServico.getFimDoAtendimento().toString());
+        this.txtTotalServico.setText(this.ordemDeServico.getTotalDoServico().toString());
+        this.cbFormaDePagamento.setSelectedItem(this.ordemDeServico.getFormaDePagamento().toString());
+        
+        // Lista de Serviços
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id");   
+        modelo.addColumn("Descrição");
+        
+        for(Servico s : this.ordemDeServico.getServicos()){
+            Vector linha = new Vector();
+            linha.add(s.getId());
+            linha.add(s.getDescricao());
+            
+            modelo.addRow(linha);
+           
+        }
+        
+        tblServicos.setModel(modelo);
+    }
+    private void getComponentes() throws ParseException{
+        this.ordemDeServico.setCliente(this.cliente);
+        this.ordemDeServico.setMotivoDaChamada(this.txtMotivoDaChamada.getText());
+        this.ordemDeServico.setTotalDoServico(new BigDecimal(this.txtTotalServico.getText()));        
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+        Date dataInicio = formato.parse(this.txtDataInicio.getText()); 
+        this.ordemDeServico.setData(dataInicio);
+        Date dataFim = formato.parse(this.txtFimDoAtendimento.getText()); 
+        this.ordemDeServico.setFimDoAtendimento(dataFim);
+        
+        String itemSelecionado = this.cbFormaDePagamento.getSelectedItem().toString();
+        if(itemSelecionado == "Dinheiro"){
+            this.ordemDeServico.setFormaDePagamento(FormaDePagamento.dinheiro);
+        }
+        else if(itemSelecionado == "Cartão Debito"){
+            this.ordemDeServico.setFormaDePagamento(FormaDePagamento.cartaoDebito);
+        }
+        else if(itemSelecionado == "Cartão Credito"){
+            this.ordemDeServico.setFormaDePagamento(FormaDePagamento.cartaoCredito);
+        }
+        else{
+            this.ordemDeServico.setFormaDePagamento(FormaDePagamento.boletoBancario);
+        }
+            
+        this.ordemDeServico.setServicos(this.servicos);
+
+    }
+    
+
+    
+    public void setCliente(Cliente c){
+        this.cliente = c;
+        this.txtCliente.setText(this.cliente.getNome());
+    }
+
+    private OrdemDeServicoFormulario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -43,26 +133,25 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
         cbFormaDePagamento = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtDataInicio = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        txtFimDoAtendimento = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        cbClientes = new javax.swing.JComboBox<>();
         btnAddCliente = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         btnAddServico = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblServiços = new javax.swing.JTable();
+        tblServicos = new javax.swing.JTable();
         btnSalvar = new javax.swing.JButton();
-        BtnExcluir = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         btnGerarRelatorio = new javax.swing.JButton();
+        txtCliente = new javax.swing.JTextField();
+        txtTotalServico = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(245, 246, 247));
 
@@ -87,12 +176,25 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Data Inicio do atendimento:");
 
-        jFormattedTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        txtDataInicio.setBackground(new java.awt.Color(255, 255, 255));
+        txtDataInicio.setForeground(new java.awt.Color(0, 0, 0));
+        try {
+            txtDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtDataInicio.setToolTipText("");
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Data de Fim do atendimento:");
 
-        jFormattedTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        txtFimDoAtendimento.setBackground(new java.awt.Color(255, 255, 255));
+        txtFimDoAtendimento.setForeground(new java.awt.Color(0, 0, 0));
+        try {
+            txtFimDoAtendimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Total do serviço:");
@@ -100,17 +202,12 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("R$:");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Cliente:");
 
-        cbClientes.setBackground(new java.awt.Color(255, 255, 255));
-        cbClientes.setForeground(new java.awt.Color(0, 0, 0));
-        cbClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btnAddCliente.setBackground(new java.awt.Color(117, 168, 255));
-        btnAddCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-adicionar-25.png"))); // NOI18N
+        btnAddCliente.setForeground(new java.awt.Color(0, 0, 0));
+        btnAddCliente.setText("Selecionar");
         btnAddCliente.setPreferredSize(new java.awt.Dimension(35, 23));
         btnAddCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +219,8 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
         jLabel9.setText("Serviços:");
 
         btnAddServico.setBackground(new java.awt.Color(117, 168, 255));
-        btnAddServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-adicionar-25.png"))); // NOI18N
+        btnAddServico.setForeground(new java.awt.Color(0, 0, 0));
+        btnAddServico.setText("Adicionar");
         btnAddServico.setPreferredSize(new java.awt.Dimension(35, 23));
         btnAddServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,8 +228,8 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
             }
         });
 
-        tblServiços.setBackground(new java.awt.Color(245, 246, 247));
-        tblServiços.setModel(new javax.swing.table.DefaultTableModel(
+        tblServicos.setBackground(new java.awt.Color(245, 246, 247));
+        tblServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -154,23 +252,37 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblServiços);
-        if (tblServiços.getColumnModel().getColumnCount() > 0) {
-            tblServiços.getColumnModel().getColumn(0).setResizable(false);
-            tblServiços.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(tblServicos);
+        if (tblServicos.getColumnModel().getColumnCount() > 0) {
+            tblServicos.getColumnModel().getColumn(0).setResizable(false);
+            tblServicos.getColumnModel().getColumn(1).setResizable(false);
         }
 
         btnSalvar.setBackground(new java.awt.Color(117, 168, 255));
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-salvar-30.png"))); // NOI18N
-
-        BtnExcluir.setBackground(new java.awt.Color(117, 168, 255));
-        BtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-excluir-30.png"))); // NOI18N
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnSair.setBackground(new java.awt.Color(117, 168, 255));
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-sair-30.png"))); // NOI18N
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         btnGerarRelatorio.setBackground(new java.awt.Color(117, 168, 255));
         btnGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/icons8-ordem-de-compra-30.png"))); // NOI18N
+
+        txtCliente.setEditable(false);
+        txtCliente.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtTotalServico.setBackground(new java.awt.Color(255, 255, 255));
+        txtTotalServico.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalServico.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -179,12 +291,19 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(241, 241, 241)
+                        .addComponent(btnSalvar)
+                        .addGap(53, 53, 53)
+                        .addComponent(btnSair)
+                        .addGap(52, 52, 52)
+                        .addComponent(btnGerarRelatorio))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTotalServico, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -199,33 +318,23 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(cbFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(txtMotivoDaChamada))
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFimDoAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAddCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnAddCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAddServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(btnSalvar)
-                        .addGap(40, 40, 40)
-                        .addComponent(BtnExcluir)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnSair)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnGerarRelatorio)))
+                                    .addComponent(btnAddServico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel8)))))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -244,11 +353,11 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFimDoAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbFormaDePagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,18 +367,18 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtTotalServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAddCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel8)
-                                .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(41, 41, 41)
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel8)
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAddCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9)
-                            .addComponent(btnAddServico, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAddServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -277,7 +386,6 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(BtnExcluir)
                         .addComponent(btnSair, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(btnGerarRelatorio))
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -295,29 +403,54 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddClienteActionPerformed
         // TODO add your handling code here:
-        ClienteFormulario tela = new ClienteFormulario(new Cliente());
+        OrdemDeServicoSelecionarCliente tela = new OrdemDeServicoSelecionarCliente(this);
         tela.setVisible(true);
     }//GEN-LAST:event_btnAddClienteActionPerformed
 
     private void btnAddServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddServicoActionPerformed
         // TODO add your handling code here:
+        OrdemDeServicoAddServico tela = new OrdemDeServicoAddServico(this);
+        tela.setVisible(true);
+        
     }//GEN-LAST:event_btnAddServicoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(this, "Deseja realmente Salvar os dados do Serviço?", "Confirmação", JOptionPane.YES_NO_OPTION)
+            == JOptionPane.YES_OPTION){
+
+            try {
+                this.getComponentes();
+            } catch (ParseException ex) {
+                Logger.getLogger(OrdemDeServicoFormulario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(repositorio.Salvar(this.ordemDeServico)){
+                JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                this.setComponentes();
+            }else{
+                JOptionPane.showMessageDialog(this, "Aconteceu um erro ao salvar os dados!", "Erro!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "Operação cancelada", "Informação", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
-    public void preecherComboCliente(){
-        cbClientes.removeAllItems();
-        for(Cliente c : clienteRepo.Buscar(null)){
-            cbClientes.addItem(c.getNome());
-        }
-        
-    }
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -352,16 +485,12 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnExcluir;
     private javax.swing.JButton btnAddCliente;
     private javax.swing.JButton btnAddServico;
     private javax.swing.JButton btnGerarRelatorio;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox<String> cbClientes;
     private javax.swing.JComboBox<String> cbFormaDePagamento;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -374,9 +503,38 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblId;
-    private javax.swing.JTable tblServiços;
+    private javax.swing.JTable tblServicos;
+    private javax.swing.JTextField txtCliente;
+    private javax.swing.JFormattedTextField txtDataInicio;
+    private javax.swing.JFormattedTextField txtFimDoAtendimento;
     private javax.swing.JTextField txtMotivoDaChamada;
+    private javax.swing.JFormattedTextField txtTotalServico;
     // End of variables declaration//GEN-END:variables
+
+    void setServico(Servico servico) {
+        this.servicos.add(servico);
+        
+        //add o item selecionado na tabela
+        List<Servico> resultado = this.servicos;
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id");   
+        modelo.addColumn("Descrição");
+        
+        for(Servico s : resultado){
+            Vector linha = new Vector();
+            linha.add(s.getId());
+            linha.add(s.getDescricao());
+            
+            modelo.addRow(linha);
+           
+        }
+        
+        tblServicos.setModel(modelo);
+    }
+
+    
+
+   
 }
