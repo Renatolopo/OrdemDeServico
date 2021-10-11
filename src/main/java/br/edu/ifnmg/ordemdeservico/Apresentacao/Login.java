@@ -227,6 +227,11 @@ public class Login extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(this, "Deseja realmente sair do Sistema", "Confirmação", JOptionPane.YES_NO_OPTION)
+            == JOptionPane.YES_OPTION){
+            System.exit(0);
+
+        }
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed

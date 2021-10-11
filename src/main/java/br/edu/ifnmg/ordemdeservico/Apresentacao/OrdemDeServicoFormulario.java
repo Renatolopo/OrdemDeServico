@@ -8,7 +8,6 @@ package br.edu.ifnmg.ordemdeservico.Apresentacao;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Cliente;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.ClienteRepositorio;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.FormaDePagamento;
-import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Item;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServico;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServicoRepositorio;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Servico;
@@ -276,6 +275,11 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
 
         btnGerarRelatorio.setBackground(new java.awt.Color(117, 168, 255));
         btnGerarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/icons8-ordem-de-compra-30.png"))); // NOI18N
+        btnGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerarRelatorioActionPerformed(evt);
+            }
+        });
 
         txtCliente.setEditable(false);
         txtCliente.setBackground(new java.awt.Color(255, 255, 255));
@@ -446,6 +450,12 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarRelatorioActionPerformed
+        // TODO add your handling code here:
+        OrdemDeServicoRelatorio tela = new OrdemDeServicoRelatorio(this.ordemDeServico);
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
     /**
      * @param args the command line arguments

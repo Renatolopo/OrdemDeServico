@@ -37,7 +37,7 @@ public class OrdemDeServicoSelecionarCliente extends javax.swing.JFrame {
     }
 
     private void preencherTabela(){
-         List<Cliente> resultado  = repositorio.Buscar(null);
+        List<Cliente> resultado  = repositorio.Buscar(null);
         
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Id");   

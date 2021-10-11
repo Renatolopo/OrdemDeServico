@@ -5,7 +5,6 @@
  */
 package br.edu.ifnmg.ordemdeservico.Apresentacao;
 
-import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Item;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Servico;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.ServicoRepositorio;
 import br.edu.ifnmg.ordemdeservico.Persistencia.ServicoDAO;
@@ -70,8 +69,9 @@ public class OrdemDeServicoAddServico extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblServico = new javax.swing.JTable();
         btnSair = new javax.swing.JButton();
+        btnCriarServico = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(245, 246, 247));
 
@@ -123,20 +123,29 @@ public class OrdemDeServicoAddServico extends javax.swing.JFrame {
             }
         });
 
+        btnCriarServico.setBackground(new java.awt.Color(117, 168, 255));
+        btnCriarServico.setForeground(new java.awt.Color(0, 0, 0));
+        btnCriarServico.setText("Criar Novo Serviço");
+        btnCriarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarServicoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(btnSair))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnSair)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCriarServico))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,7 +156,9 @@ public class OrdemDeServicoAddServico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(btnSair)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSair)
+                    .addComponent(btnCriarServico))
                 .addGap(30, 30, 30))
         );
 
@@ -163,6 +174,7 @@ public class OrdemDeServicoAddServico extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -181,6 +193,12 @@ public class OrdemDeServicoAddServico extends javax.swing.JFrame {
         
         this.setVisible(false);
     }//GEN-LAST:event_tblServicoMouseClicked
+
+    private void btnCriarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarServicoActionPerformed
+        // TODO add your handling code here:
+        ServicoFormulario tela = new ServicoFormulario(new Servico());
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnCriarServicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +236,7 @@ public class OrdemDeServicoAddServico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCriarServico;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

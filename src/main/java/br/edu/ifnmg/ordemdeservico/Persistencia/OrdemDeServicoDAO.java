@@ -9,6 +9,7 @@ import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServico;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServicoRepositorio;
 import java.util.Hashtable;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -22,28 +23,35 @@ public class OrdemDeServicoDAO extends DataAccessObject<OrdemDeServico> implemen
     @Override
     public List<OrdemDeServico> Buscar(OrdemDeServico obj) {
         String jpql = "select o from OrdemDeServico o";
-        
-        String filtros = "";
+      
         
         Hashtable<String, Object> parametros = new Hashtable<>();
         
         if(obj != null){
             if(obj.getMotivoDaChamada().length() > 0){
-                filtros += "o.motivoDaChamada like :motivoDaChamada";
                 parametros.put("motivoDaChamada", obj.getMotivoDaChamada()+"%");
             }
             
         }
-         
-        if(filtros.length() > 0)
-            jpql = jpql + " were " + filtros;
-        
-        var query = this.manager.createQuery(jpql);
-        
-        for(String chave : parametros.keySet()){
-            query.setParameter(chave, parametros.get(chave));
+        if(!parametros.isEmpty()){
+            String filtros = "";
+            jpql += " where ";
+            for(String campo : parametros.keySet()){
+                if(!filtros.isEmpty())
+                    filtros += " and ";
+                jpql += "o." + campo + "= :" + campo;
+            }
+            jpql += filtros;
         }
-        return query.getResultList();
+      
+        Query sql = this.manager.createQuery(jpql);
+        
+        if(!parametros.isEmpty()){
+            for(String campo: parametros.keySet()){
+                sql.setParameter(campo, parametros.get(campo));
+            }
+        }
+        return sql.getResultList();
     }
     
 }
