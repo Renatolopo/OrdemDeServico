@@ -10,6 +10,7 @@ import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServico;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.OrdemDeServicoRepositorio;
 import br.edu.ifnmg.ordemdeservico.LogicaAplicacao.Servico;
 import br.edu.ifnmg.ordemdeservico.Persistencia.OrdemDeServicoDAO;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -48,8 +49,9 @@ public class OrdemDeServicoRelatorio extends javax.swing.JFrame {
         this.lblDocumento.setText(this.ordemDeServico.getCliente().getNumDocumento());
         
         this.lblMotivoDaChamada.setText(this.ordemDeServico.getMotivoDaChamada());
-        this.lblDataInicio.setText(this.ordemDeServico.getData().toString());
-        this.lblDataFim.setText(this.ordemDeServico.getFimDoAtendimento().toString());
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        this.lblDataInicio.setText(formatador.format(this.ordemDeServico.getData()).toString());
+        this.lblDataFim.setText(formatador.format(this.ordemDeServico.getFimDoAtendimento()).toString());
         this.lblTotalServico.setText(this.ordemDeServico.getTotalDoServico().toString());
         
         // Tabela de Serviços

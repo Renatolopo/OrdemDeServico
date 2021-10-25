@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.print.attribute.Size2DSyntax.MM;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,8 +55,9 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
         this.lblId.setText(this.ordemDeServico.getId().toString());
         this.txtCliente.setText(this.ordemDeServico.getCliente().getNome());
         this.txtMotivoDaChamada.setText(this.ordemDeServico.getMotivoDaChamada());
-        this.txtDataInicio.setText(this.ordemDeServico.getData().toString());
-        this.txtFimDoAtendimento.setText(this.ordemDeServico.getFimDoAtendimento().toString());
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        this.txtDataInicio.setText(formatador.format(this.ordemDeServico.getData()).toString());
+        this.txtFimDoAtendimento.setText(formatador.format(this.ordemDeServico.getFimDoAtendimento()).toString());
         this.txtTotalServico.setText(this.ordemDeServico.getTotalDoServico().toString());
         this.cbFormaDePagamento.setSelectedItem(this.ordemDeServico.getFormaDePagamento().toString());
         
@@ -177,11 +179,7 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
 
         txtDataInicio.setBackground(new java.awt.Color(255, 255, 255));
         txtDataInicio.setForeground(new java.awt.Color(0, 0, 0));
-        try {
-            txtDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtDataInicio.setText("");
         txtDataInicio.setToolTipText("");
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -189,11 +187,6 @@ public class OrdemDeServicoFormulario extends javax.swing.JFrame {
 
         txtFimDoAtendimento.setBackground(new java.awt.Color(255, 255, 255));
         txtFimDoAtendimento.setForeground(new java.awt.Color(0, 0, 0));
-        try {
-            txtFimDoAtendimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Total do serviço:");

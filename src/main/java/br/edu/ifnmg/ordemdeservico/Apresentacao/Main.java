@@ -61,7 +61,7 @@ public class Main {
         
         for(PrestadorDeServico p : repo.Buscar(pres)){
             System.out.println(p.getId());
-            //repo.Apagar(p);
+            //repo.Apagar(p);wefwefe
         }
       
     }
